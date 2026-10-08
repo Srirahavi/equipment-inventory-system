@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import api from '../api';
 import Navbar from './Navbar';
 
 const CATEGORIES = [
@@ -112,7 +112,7 @@ function EquipmentViewDashboard({ title, subtitle, accentFrom='from-indigo-500',
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/equipment', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await api.get('/api/equipment', { headers: { Authorization: `Bearer ${token}` } });
         setEquipments(res.data);
       } catch { setError('Failed to load equipment data. Please refresh.'); }
       finally   { setLoading(false); }

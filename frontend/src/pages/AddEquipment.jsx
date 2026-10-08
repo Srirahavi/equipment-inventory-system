@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -312,7 +312,7 @@ function AddEquipment() {
         if (formData[f] !== '' && formData[f] !== undefined) payload[f] = formData[f];
       });
 
-      await axios.post('http://localhost:5000/api/equipment/add', payload, {
+      await api.post('/api/equipment/add', payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

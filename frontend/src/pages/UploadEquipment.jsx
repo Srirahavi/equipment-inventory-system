@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -190,8 +190,8 @@ function UploadEquipment() {
         .filter(r => r._issues.length === 0)
         .map(({ _issues, ...rest }) => rest);
 
-      const res = await axios.post(
-        'http://localhost:5000/api/equipment/bulk-add',
+      const res = await api.post(
+        '/api/equipment/bulk-add',
         { records },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -51,7 +51,7 @@ function InstitutionDashboard() {
   const fetchEquipments = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/equipment', {
+      const res = await api.get('/api/equipment', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEquipments(res.data);
